@@ -1,5 +1,6 @@
 import requests as r
 import json as js
+from fake_useragent import UserAgent
 
 checkurl='http://api.bilibili.com/x/credit/jury/requirement'
 applyurl='http://api.bilibili.com/x/credit/jury/apply'
@@ -7,7 +8,9 @@ avaliability=False
 
 def Apply(sessdata,csrf):
     headers={
-        'cookie': 'SESSDATA={}'.format(sessdata)
+        'cookie': 'SESSDATA={}'.format(sessdata),
+        'Host': 'api.bilibili.com',
+        'User-Agent': UserAgent().random,
     }
     result=js.loads(r.get(checkurl,headers=headers).text)
     blocked,cert,level,rule=result['data']['blocked'],result['data']['cert'],result['data']['level'],result['data']['rule']
@@ -15,7 +18,9 @@ def Apply(sessdata,csrf):
         global avaliability
         avaliability=True
     headers={
-        'cookie': 'bili_jct={}; SESSDATA={}'.format(csrf,sessdata)
+        'cookie': 'bili_jct={}; SESSDATA={}'.format(csrf,sessdata),
+        'Host': 'api.bilibili.com',
+        'User-Agent': UserAgent().random,
     }
     params={
         'csrf': csrf
