@@ -1,8 +1,13 @@
 import requests as r
+from fake_useragent import UserAgent
 
 caseurl='http://api.bilibili.com/x/credit/jury/caseInfo'
 
 def GetCase(cid):
     params={'cid': cid}
-    info=r.get(caseurl,params=params)
+    headers={
+        'Host': 'api.bilibili.com',
+        'User-Agent': UserAgent().random,
+    }
+    info=r.get(caseurl,headers=headers,params=params)
     return info
