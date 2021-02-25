@@ -1,5 +1,6 @@
 import requests as r
 import json as js
+from fake_useragent import UserAgent
 voteurl='http://api.bilibili.com/x/credit/jury/vote'
 
 voteaction={
@@ -11,7 +12,9 @@ voteaction={
 
 def Vote(opreation,cid,csrf,sessdata):
     headers={
-        'cookie': 'SESSDATA={}'.format(sessdata)
+        'cookie': 'SESSDATA={}'.format(sessdata),
+        'Host': 'api.bilibili.com',
+        'User-Agent': UserAgent().random,
     }
     params={
         'cid': cid,
