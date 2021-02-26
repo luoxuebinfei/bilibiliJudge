@@ -14,7 +14,7 @@ def Vote(opreation,cid,csrf,sessdata):
     headers={
         'cookie': 'SESSDATA={}'.format(sessdata),
         'Host': 'api.bilibili.com',
-        'User-Agent': UserAgent().random,
+        'User-Agent': UserAgent(verify_ssl=False).random,
     }
     params={
         'cid': cid,
