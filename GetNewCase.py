@@ -8,7 +8,7 @@ def GetNew(csrf,sessdata):
     headers={
         'cookie': 'bili_jct={}; SESSDATA={}'.format(csrf,sessdata),
         'Host': 'api.bilibili.com',
-        'User-Agent': UserAgent().random,
+        'User-Agent': UserAgent(verify_ssl=False).random,
     }
     params={
         'csrf': csrf
