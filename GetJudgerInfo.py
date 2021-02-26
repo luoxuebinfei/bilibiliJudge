@@ -9,7 +9,7 @@ def GetInfo(SESSDATA):
     headers={
         'cookie': test,
         'Host': 'api.bilibili.com',
-        'User-Agent': UserAgent().random,
+        'User-Agent': UserAgent(verify_ssl=False).random,
     }
     info=r.get(url,headers=headers)
     info_loads=js.loads(info.text)
