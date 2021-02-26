@@ -10,7 +10,7 @@ def Apply(sessdata,csrf):
     headers={
         'cookie': 'SESSDATA={}'.format(sessdata),
         'Host': 'api.bilibili.com',
-        'User-Agent': UserAgent().random,
+        'User-Agent': UserAgent(verify_ssl=False).random,
     }
     result=js.loads(r.get(checkurl,headers=headers).text)
     blocked,cert,level,rule=result['data']['blocked'],result['data']['cert'],result['data']['level'],result['data']['rule']
@@ -20,7 +20,7 @@ def Apply(sessdata,csrf):
     headers={
         'cookie': 'bili_jct={}; SESSDATA={}'.format(csrf,sessdata),
         'Host': 'api.bilibili.com',
-        'User-Agent': UserAgent().random,
+        'User-Agent': UserAgent(verify_ssl=False).random,
     }
     params={
         'csrf': csrf
